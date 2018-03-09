@@ -1,0 +1,76 @@
+.grid {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.row {
+
+}
+
+.row::before,
+.row::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.col {
+    float: left;
+    padding: 0 8px;
+}
+
+.col_right {
+    float: right;
+}
+
+.col_0 {
+    display: none;
+}
+
+.col_1 {
+    width: 8.3333%;
+}
+
+.col_2 {
+    width: 16.6666%;
+}
+
+.col_3 {
+    width: 25%;
+}
+
+.col_4 {
+    width: 33.3333%;
+}
+
+.col_5 {
+    width: 41.6666%;
+}
+
+.col_6 {
+    width: 50%;
+}
+
+.col_7 {
+    width: 58.3333%;
+}
+
+.col_8 {
+    width: 66.6666%;
+}
+
+.col_9 {
+    width: 75%;
+}
+
+.col_10 {
+    width: 83.3333%;
+}
+
+.col_11 {
+    width: 91.6666%;
+}
+
+.col_12 {
+    width: 100%;
+}

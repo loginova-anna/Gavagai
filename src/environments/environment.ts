@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiBaseUrl: 'https://api.gavagai.se/v3',
+  apiKey: '81de7393594fea11cf36058ec9e28f0b'
 };

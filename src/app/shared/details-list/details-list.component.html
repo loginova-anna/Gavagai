@@ -1,0 +1,8 @@
+<div class="details-list">
+  <p class="details-list__toggler" (click)="toggleDetails()">Details</p>
+  <div class="details-list__list" *ngIf="show">
+    <div class="details-list__item"  *ngFor="let item of list">
+        <text-detail [detail]="item"></text-detail>
+    </div>
+  </div>
+</div>

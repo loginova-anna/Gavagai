@@ -1,0 +1,40 @@
+@import '~style-partials/variables';
+
+.text-detail {
+
+}
+
+.text-detail::before,
+.text-detail::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.text-detail__id {
+    float: left;
+    width: 20px;
+}
+
+.text-detail__text {
+    float: left;
+    width: calc(60% - 20px)
+}
+
+.text-detail__tonalities {
+    float: left;
+    text-align: right;
+    width: 40%;
+}
+
+.text-detail__tonality {
+    width: 20px;
+    margin-left: 2px;
+    padding: 5px;
+    background: $grey-500;
+    display: inline-block;
+}
+
+.text-detail__tonality_active {
+
+}

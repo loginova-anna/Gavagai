@@ -1,0 +1,59 @@
+@import '~style-partials/variables';
+
+.layout {
+
+}
+
+.layout__header {
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 2px solid $grey-200;
+}
+
+.header {
+
+}
+
+.header__title {
+    color: $grey-800;
+}
+
+.header__arrow {
+    height: 23px;
+}
+
+.uploader {
+
+}
+
+.uploader__input {
+    display: none;
+}
+
+.uploader__button {
+    width: 100%;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: .3s;
+    text-transform: uppercase;
+}
+.uploader__button_accent {
+    background: $master-red;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    position: relative;
+    &:hover {
+        background: $hover-red;
+    }
+}
+
+.uploader__rabbit {
+    width: 30px;
+    position: absolute;
+    height: 30px;
+    top: 4px;
+    right: 20px;
+}

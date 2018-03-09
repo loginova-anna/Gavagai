@@ -1,0 +1,6 @@
+<div class="tone-chooser">
+  <div *ngFor="let tone of tones" class="tone-chooser__control">
+    <input type="checkbox" [attr.id]="'input'+tone" class="tone-chooser__input" (change)="chooseTone($event, tone)">
+    <label [attr.for]="'input'+tone" class="tone-chooser__label">{{tone}}</label>
+  </div>
+</div>
