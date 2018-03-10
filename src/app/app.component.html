@@ -11,14 +11,12 @@
   <section class="layout__section grid">
     <div class="row">
       <div class="uploader col col_3">
-        <input #fileloader type="file" (change)="loadFile($event)" class="uploader__input">
-        <button class="uploader__button" (click)="clickFileInput()">Choose file</button>
-        <p class="uploader__filename">{{fileName || 'no file loaded'}}</p>
+        <file-parser (fileData)="onFileDataLoad($event)"></file-parser>
         <tone-chooser [tones]="toneList" (chosen)="setChosenTones($event)"></tone-chooser>
 
-        <language-select [languages]="languages"></language-select>
-        <button class="uploader__button uploader__button_accent" (click)="analyzeFile()">
-          Analyze <img src="http://www.gavagai.se/wp-content/themes/gavagai/img/rabbit.png" class="uploader__rabbit">
+        <language-select [languages]="languages" (code)="setLanguageCode($event)"></language-select>
+        <button class="uploader__button button button_accent" (click)="analyzeFile()">
+          Analyze <span class="button__rabbit"></span>
         </button>
       </div>
       <div class="col col_6">

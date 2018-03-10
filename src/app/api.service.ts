@@ -3,6 +3,9 @@ import { Http } from '@angular/http';
 import { environment } from '../environments/environment';
 import { RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map'
+import { UploadData } from './models/upload-data';
+import { Observable } from 'rxjs/Rx';
+import { ResultData } from './models/result-data';
 
 @Injectable()
 export class ApiService {
@@ -15,65 +18,15 @@ export class ApiService {
     // return this.http.get(this.getUrl('/languages')).subscribe(res => console.log(res.json()));
   }
 
-  getFileAnalysis(file: File) {
+  getFileAnalysis(data: UploadData): Observable<ResultData> {
     let header = new Headers({
       'Content-Type': 'application/json'
     });
     let options = new RequestOptions({
       headers: header
    });
-    let fd = new FormData();
-    fd.append('file', file);
-    let data = {
-      "sourceId": 12345,
-      "language": "EN",
-      "tones": [
-        "love",
-        "hate"
-      ],
-      "includeSentences": true
-    };
-    let txtdata = {
-      "texts": [
-        {
-          "body": "i love you",
-          "title": "bla",
-          "id": "1"
-        },
-        {
-          "body": "i hate you",
-          "title": "got",
-          "id": "2"
-        },
-        {
-          "body": "i don't know you well to tell if i love or hate you",
-          "title": "got",
-          "id": "3"
-        },
-        {
-          "body": "you are so georgeous, i would like to spend all my life with you",
-          "title": "got",
-          "id": "4"
-        },
-        {
-          "body": "i think you have part og the brain mulfunctioning",
-          "title": "got",
-          "id": "5"
-        },
-        {
-          "body": "i think you could hardly be loved",
-          "title": "got",
-          "id": "5"
-        }
-      ],
-      "language": "en",
-      "tones": [
-        "positivity",
-        "negativity"
-      ],
-      "includeSentences": true
-    };
-    // return this.http.post(this.getUrl('/tonality'), JSON.stringify(txtdata), options).subscribe(res => console.log(res.json()));
+   return Observable.of(JSON.parse(JSON.parse(localStorage.getItem('testfile'))._body));
+    // return this.http.post(this.getUrl('/tonality'), JSON.stringify(data), options);
   }
 
   getIsoLangs() {

@@ -1,0 +1,12 @@
+<div class="file-parser">
+    <input #fileloader type="file" (change)="loadFile($event)" class="file-parser__input" accept=".xls,.xlsx,.pdf,.txt,.docx">
+    <button class="file-parser__button button" (click)="clickFileInput()">Choose file</button>
+    <p class="file-parser__filename">{{file&&file.name || 'no file loaded'}}</p> <br>
+    Enter content field name
+    <input type="text" class="file-parser__content-field" (change)="setContentField($event)" value="content"><br>
+    Enter title field name
+    <input type="text" class="file-parser__title-field" (change)="setTitleField($event)" value="title"><br>
+    Should I break text on paragraphs?
+    <input type="checkbox" class="file-parser__break-check" (change)="setBreak($event)"><br>
+</div>
+  

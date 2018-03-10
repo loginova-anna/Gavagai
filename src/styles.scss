@@ -23,7 +23,36 @@ button {
     border: none;
     box-shadow: none;
     background: $grey-200;
+    width: 100%;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: .3s;
+    text-transform: uppercase;
     &:hover {
         background: $grey-300;
     }
+}
+
+.button_accent {
+    background: $master-red;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    position: relative;
+    &:hover {
+        background: $hover-red;
+    }
+}
+
+.button__rabbit {
+    width: 30px;
+    height: 30px;
+    background-image: url('http://www.gavagai.se/wp-content/themes/gavagai/img/rabbit.png');
+    background-size: cover;
+    position: absolute;
+    height: 30px;
+    top: 4px;
+    right: 20px;
 }

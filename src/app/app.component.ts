@@ -3,6 +3,9 @@ import { ApiService } from './api.service';
 import { ResultItem } from './models/result-item';
 import { UploadText } from './models/upload-text';
 import { Tonality } from './models/tonality';
+import * as pdfjs from 'pdfjs-dist';
+import { UploadData } from './models/upload-data';
+import { AnalyzeService } from './analyze.service';
 
 @Component({
   selector: 'app-root',
@@ -15,38 +18,10 @@ export class AppComponent implements OnInit {
   chosenTones: string[];
   languages = [];
   fileName: string;
-  @ViewChild('fileloader') fileloader: ElementRef;
-  result = [
-    new ResultItem(
-      new UploadText(0, 'title 1', 'textlkdf dfg dfgfghf dfgdfg fggj'),
-      [
-        new Tonality('love', 1, 0.5, {}),
-        new Tonality('love', 1, 0.5, {})
-      ]
-    ),
-    new ResultItem(
-      new UploadText(1, 'title 1', 'textlkdf dfg dfgfghf dfgdfg fggj'),
-      [
-        new Tonality('love', 1, 0.5, {}),
-        new Tonality('love', 1, 0.5, {})
-      ]
-    ),
-    new ResultItem(
-      new UploadText(2, 'title 1', 'textlkdf dfg dfgfghf dfgdfg fggj'),
-      [
-        new Tonality('love', 1, 0.5, {}),
-        new Tonality('love', 1, 0.5, {})
-      ]
-    ),
-    new ResultItem(
-      new UploadText(3, 'title 1', 'textlkdf dfg dfgfghf dfgdfg fggj'),
-      [
-        new Tonality('love', 1, 0.5, {}),
-        new Tonality('love', 1, 0.5, {})
-      ]
-    )
-  ]
-  constructor(private apiService: ApiService) {}
+  fileData = [];
+  languageCode = 'EN';
+
+  constructor(private apiService: ApiService, private analyser: AnalyzeService) {}
   ngOnInit() {
     this.toneList = this.apiService.getTones();
     this.apiService.getIsoLangs().subscribe(res => this.languages = res);
@@ -55,18 +30,42 @@ export class AppComponent implements OnInit {
   }
 
   loadFile(event) {
-    console.log(event.target.value)
-    this.fileName = event.target.value;
+    this.fileName = event.srcElement.files[0].name;
     let file = event.srcElement.files[0];
     this.apiService.getFileAnalysis(file);
   }
 
   setChosenTones(tones) {
     this.chosenTones = tones;
-    console.log(this.chosenTones);
   }
 
-  clickFileInput() {
-    this.fileloader.nativeElement.click();
+  onFileDataLoad(data) {
+    console.log(data);
+    this.fileData = data;
+  }
+
+  setLanguageCode(lang) {
+    this.languageCode = lang;
+  }
+
+  analyzeFile() {
+    if (!this.fileData.length || !this.toneList.length) {
+      return;
+    }
+
+    let analyzeData = new UploadData(
+      this.fileData,
+      this.languageCode,
+      this.chosenTones,
+      true
+    )
+    this.apiService.getFileAnalysis(analyzeData).subscribe(data =>
+      // localStorage.setItem('testfile', JSON.stringify(data))
+      {
+        console.log(data);
+        console.log(this.analyser.getOverallTonalityScore(data));
+        console.log(this.analyser.getNgramsByTones(data));
+      }
+    );
   }
 }
