@@ -11,10 +11,12 @@ const PDFJS: PDFJSStatic = require('pdfjs-dist');
 
 @Injectable()
 export class ParserService {
-
+    loadProgress = new Subject<number>();
+    loadProgressObs: Observable<number>;
     pdfjs;
     constructor(private paparse: PapaParseService, private http: Http) {
         this.pdfjs = PDFJS;
+        this.loadProgressObs = this.loadProgress.asObservable();
     }
 
     loadFile(file: File) {

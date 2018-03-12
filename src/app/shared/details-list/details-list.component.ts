@@ -13,10 +13,7 @@ export class DetailsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  toggleDetails() {
-    this.show = !this.show;
+    console.log(this.list);
   }
 
 }

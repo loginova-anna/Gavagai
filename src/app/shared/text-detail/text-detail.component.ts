@@ -8,11 +8,16 @@ import { ResultItem } from '../../models/result-item';
 })
 export class TextDetailComponent implements OnInit {
 
-  @Input() detail: ResultItem
+  @Input() detail: ResultItem;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.detail);
+  }
+
+  getRoundedScore(tone) {
+    return tone.score ? (Math.round(tone.score*100)/100) : 0;
   }
 
 }

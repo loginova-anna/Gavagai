@@ -10,17 +10,43 @@
   </header>
   <section class="layout__section grid">
     <div class="row">
+      <div class="col col_12 clearfix">
+        <p class="filename">{{fileData && fileData.name ? fileData.name : 'No file chosen'}}</p>
+        <input type="text" class="key-input" placeholder="Enter your ApiKey" [(ngModel)]="apiKey">
+      </div>
+    </div>
+    <div class="row">
       <div class="uploader col col_3">
         <file-parser (fileData)="onFileDataLoad($event)"></file-parser>
-        <tone-chooser [tones]="toneList" (chosen)="setChosenTones($event)"></tone-chooser>
-
+        <!-- <tone-chooser [tones]="toneList" (chosen)="setChosenTones($event)"></tone-chooser> -->
         <language-select [languages]="languages" (code)="setLanguageCode($event)"></language-select>
         <button class="uploader__button button button_accent" (click)="analyzeFile()">
           Analyze <span class="button__rabbit"></span>
         </button>
+        <p class="uploader__error">{{error}}</p>
+        <div class="uploader__filelist filelist" *ngIf="allFiles && allFiles.length">
+          <p class="filelist__title">Loaded files:</p>
+          <div class="filelist__list">
+              <p class="filelist__file" [ngClass]="{'filelist__file_active': file.id === currentFile.id}" *ngFor="let file of allFiles" (click)="setCurrentFile(file.id)">{{file.name}}</p>
+          </div>
+        </div>
       </div>
-      <div class="col col_6">
-        <details-list [list]="result"></details-list>
+      <div class="col col_9">
+        <div class="visual-info">
+          <div class="visual-info__select clearfix">
+            <p class="visual-info__switch" [ngClass]="{'visual-info__switch_active': tab === 0}" (click)="selectTab(0)">Chart</p>
+            <p class="visual-info__switch" [ngClass]="{'visual-info__switch_active': tab === 1}" (click)="selectTab(1)">N-grams</p>
+            <p class="visual-info__switch" [ngClass]="{'visual-info__switch_active': tab === 2}" (click)="selectTab(2)">Details</p>
+            <p class="visual-info__switch" [ngClass]="{'visual-info__switch_active': tab === 3}" (click)="buildCompareData(); selectTab(3)">Compare chart</p>
+          </div>
+          <visualizer *ngIf="tab === 0 && currentFile && currentFile.graphData" [data]="[currentFile.graphData]"></visualizer>
+          <ngrams-info
+            *ngIf="tab === 1 &&currentFile && currentFile.ngramsData"
+            [data]="currentFile.ngramsData"
+          ></ngrams-info>
+          <details-list *ngIf="tab === 2" [list]="detailsData"></details-list>
+          <visualizer *ngIf="tab === 3 && compareGraphData" [data]="compareGraphData"></visualizer>
+        </div>
       </div>
     </div>
   </section>

@@ -1,3 +1,110 @@
-<p>
-  visualizer works!
-</p>
+<div class="visualizer" *ngIf="data">
+  <div class="visualizer__type-chooser clearfix">
+    <p class="visualizer__type visualizer__type_blocks" [ngClass]="{'visualizer__type_active': type === 'blocks'}" (click)="type = 'blocks'"></p>
+    <p class="visualizer__type visualizer__type_hchart" [ngClass]="{'visualizer__type_active': type === 'hchart'}" (click)="type = 'hchart'"></p>
+    <p class="visualizer__type visualizer__type_vchart" [ngClass]="{'visualizer__type_active': type === 'vchart'}" (click)="type = 'vchart'"></p>
+  </div>
+  <div *ngIf="data.length === 1" [ngSwitch]="type">
+    <div class="visualizer__hchart" *ngSwitchCase="'hchart'">
+      <ngx-charts-bar-horizontal
+        [view]="viewSize"
+        [scheme]="colorScheme"
+        [results]="data[0].series"
+        [gradient]="false"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Score'"
+        [yAxisLabel]="'Tonality'"
+        [animations]="true"
+        [roundEdges]="false"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-horizontal>
+    </div>
+    <div class="visualizer__hchart" *ngSwitchCase="'vchart'">
+      <ngx-charts-bar-vertical
+        [view]="viewSize"
+        [scheme]="colorScheme"
+        [results]="data[0].series"
+        [gradient]="false"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Tonality'"
+        [yAxisLabel]="'Score'"
+        [roundEdges]="false"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical>
+    </div>
+    <div class="visualizer__blocks" *ngSwitchCase="'blocks'">
+      <ngx-charts-tree-map
+        [view]="viewSize"
+        [scheme]="colorScheme"
+        [results]="data[0].series"
+        [gradient]="false"
+        (select)="onSelect($event)">
+      </ngx-charts-tree-map>
+    </div>
+  </div>
+  <div *ngIf="data.length > 1" [ngSwitch]="type">
+      <div class="visualizer__hchart" *ngSwitchCase="'hchart'">
+        <ngx-charts-bar-horizontal-2d
+          [view]="viewSize"
+          [scheme]="colorScheme"
+          [results]="data"
+          [gradient]="false"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxisLabel]="'Score'"
+          [yAxisLabel]="'Tonality'"
+          [animations]="true"
+          [roundEdges]="false"
+          [barPadding]="0"
+          [groupPadding]="4"
+          (select)="onSelect($event)">
+        </ngx-charts-bar-horizontal-2d>
+      </div>
+      <div class="visualizer__hchart" *ngSwitchCase="'vchart'">
+        <ngx-charts-bar-vertical-2d
+          [view]="viewSize"
+          [scheme]="colorScheme"
+          [results]="data"
+          [gradient]="false"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxisLabel]="'Tonality'"
+          [yAxisLabel]="'Score'"
+          [roundEdges]="false"
+          [barPadding]="0"
+          [groupPadding]="4"
+          (select)="onSelect($event)">
+        </ngx-charts-bar-vertical-2d>
+      </div>
+      <div class="visualizer__blocks" *ngSwitchCase="'blocks'">
+        <ngx-charts-bar-horizontal-stacked
+          [view]="viewSize"
+          [scheme]="colorScheme"
+          [results]="data"
+          [gradient]="false"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxisLabel]="'Score'"
+          [yAxisLabel]="'Tonality'"
+          (select)="onSelect($event)">
+        </ngx-charts-bar-horizontal-stacked>
+      </div>
+    </div>
+</div>

@@ -22,5 +22,84 @@
     height: 23px;
 }
 
+.filename {
+    font-size: 18px;
+    color: $grey-800;
+    padding-bottom: 25px;
+    display: inline-block;
+}
+
+.key-input {
+    color: $grey-800;
+    font-size: 16px;
+    padding: 5px;
+    float: right;
+    width: 340px;
+    text-align: center;
+}
+
+.visual-info {
+
+}
+
+.visual-info__select {
+    border-bottom: 1px solid $grey-200;
+    margin-bottom: 10px;
+}
+
+.visual-info__switch {
+    cursor: pointer;
+    float: left;
+    margin-right: 10px;
+    font-size: 14px;
+    color: $grey-500;
+    &:hover {
+        color: $grey-800;
+    }
+    &_active {
+        color: $grey-800;
+    }
+}
+
+.uploader__filelist {
+    margin-top: 20px;
+}
+
+.uploader__error {
+    padding-top: 10px;
+    color: $master-red;
+}
+
+.filelist {
+
+}
+
+.filelist__title {
+    color: $grey-800;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+}
+
+.filelist__list {
+    border-left: 2px solid $grey-100;
+    padding-left: 10px;
+}
+
+.filelist__file {
+    color: $grey-500;
+    font-size: 12px;
+    padding: 5px;
+    cursor: pointer;
+    &:hover {
+        color: $grey-800;
+    }
+    &_active {
+        color: $grey-800;
+        border: 1px solid $grey-300;
+        border-radius: 2px;
+    }
+}
+
 
 

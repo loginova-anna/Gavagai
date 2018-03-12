@@ -18,15 +18,15 @@ export class ApiService {
     // return this.http.get(this.getUrl('/languages')).subscribe(res => console.log(res.json()));
   }
 
-  getFileAnalysis(data: UploadData): Observable<ResultData> {
+  getFileAnalysis(data: UploadData, apiKey: string): Observable<ResultData> {
     let header = new Headers({
       'Content-Type': 'application/json'
     });
     let options = new RequestOptions({
       headers: header
    });
-   return Observable.of(JSON.parse(JSON.parse(localStorage.getItem('testfile'))._body));
-    // return this.http.post(this.getUrl('/tonality'), JSON.stringify(data), options);
+  //  return Observable.of(JSON.parse(JSON.parse(localStorage.getItem('testfile'))._body));
+    return this.http.post(this.getUrl('/tonality', apiKey), JSON.stringify(data), options).map(res => res.json());
   }
 
   getIsoLangs() {
@@ -47,7 +47,7 @@ export class ApiService {
     return ['positivity', 'negativity', 'fear', 'hate', 'love', 'skepticism', 'violence', 'desire'];
   }
 
-  getUrl(part: string): string {
-    return environment.apiBaseUrl + part + '?apiKey=' + environment.apiKey;
+  getUrl(part: string, apiKey: string): string {
+    return environment.apiBaseUrl + part + '?apiKey=' + apiKey;
   }
 }

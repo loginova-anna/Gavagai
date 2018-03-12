@@ -1,3 +1,65 @@
+@import '~style-partials/variables';
+
+.file-parser {
+    position: relative;
+}
+
 .file-parser__input {
     display: none;
 }
+
+.file-parser__filename {
+    word-wrap: break-word;
+}
+
+.file-parser__loader {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url('/assets/icons/loader.gif');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: auto 70%
+}
+
+.file-parser__loader_loading {
+    display:block;
+}
+
+.presets {
+
+}
+
+.presets__title {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    color: $grey-500;
+    &:hover {
+        color: $grey-800;
+    }
+    font-size: 12px;
+}
+
+.presets__preset {
+    border-left: 2px solid $grey-100;
+    padding-left: 10px;
+}
+
+.presets__label {
+    color: $grey-500;
+    font-size: 12px;
+}
+
+.presets__input {
+    width: 100%;
+    color: $grey-800;
+    font-size: 12px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+

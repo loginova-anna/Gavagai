@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ParserService } from './parser.service';
+import { UploadText } from '../../models/upload-text';
 
 @Component({
   selector: 'file-parser',
@@ -8,13 +9,15 @@ import { ParserService } from './parser.service';
   providers: [ParserService]
 })
 export class FileParserComponent implements OnInit {
-  @Output() fileData = new EventEmitter<any[]>();
+  @Output() fileData = new EventEmitter<{data: UploadText[], name: string}>();
   @ViewChild('fileloader') fileloader: ElementRef;
   mainField = 'content';
   titleField = 'title';
-  breakByLine = false;
+  breakByLine = true;
   file: File;
-  pdfjs;
+  txtPresetsShow = false;
+  tablePresetsShow = false;
+  loading = false;
   constructor(private parser: ParserService) {}
 
   ngOnInit() {
@@ -25,21 +28,37 @@ export class FileParserComponent implements OnInit {
   }
 
   loadFile(event) {
+    if (this.loading) { return; }
     this.file = event.srcElement.files[0];
+    if (!this.file) {
+      return;
+    }
+    this.loading = true;
     this.parser.loadFile(this.file).subscribe(res => {
       let preparedData = this.prepareData(res, this.file.type);
-      this.fileData.emit(preparedData);
+      this.loading = false;
+      this.fileData.emit({name: this.file.name, data: preparedData});
+    });
+  }
+
+  reloadFile() {
+    if (this.loading) { return; }
+    this.parser.loadFile(this.file).subscribe(res => {
+      let preparedData = this.prepareData(res, this.file.type);
+      this.fileData.emit({name: this.file.name, data: preparedData});
     });
   }
 
   prepareData(rawData: string | any[], type: string, breakByParagraph?: boolean) {
+    console.log(rawData, this.mainField, this.titleField);
     let texts = [];
     if (rawData instanceof Array) {
       rawData.forEach((item, index) => {
+        if (!item[this.mainField]) {return}
         texts.push ({
           body: item[this.mainField],
           title: item[this.titleField] || 'string ' + index,
-          id: item['id'] || index
+          id: index
         })
       })
     } else {
@@ -60,6 +79,7 @@ export class FileParserComponent implements OnInit {
         })
       }
     }
+    console.log(texts);
     return texts;
   }
 

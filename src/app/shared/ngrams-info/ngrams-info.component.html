@@ -1,0 +1,34 @@
+<div class="ngrams-info">
+  <div class="ngrams-info__tonality-chooser clearfix">
+    <p class="ngrams-info__tonality" *ngFor="let key of getKeys()" [ngClass]="{'ngrams-info__tonality_active': selectedKey === key}" (click)="chooseTonality(key)">{{key}}</p>
+    <div class="ngrams-info__toggler clearfix">
+        <div class="ngrams-info__switch ngrams-info__switch_cloud" (click)="cloudView = true" [ngClass]="{'ngrams-info__switch_active': cloudView}"></div>
+        <div class="ngrams-info__switch ngrams-info__switch_details" (click)="cloudView = false" [ngClass]="{'ngrams-info__switch_active': !cloudView}"></div>
+      </div>
+  </div>
+  
+  <div class="ngrams-info__cloud" *ngIf="cloudView && cloudData">
+    <word-cloud [data]="cloudData"></word-cloud>
+  </div>
+  <p class="ngrams-info__no-data" *ngIf="!data[selectedKey]">No data for this tonality</p>
+  <div class="ngrams-info__list" *ngIf = "!cloudView && data[selectedKey]">
+    <div class="ngrams-info__headers clearfix">
+      <p class="ngrams-info__name">Ngram</p>
+      <p class="ngrams-info__score">Score</p>
+      <p class="ngrams-info__sentences">Sentences</p>
+    </div>
+    
+    <div class="ngrams-info__row clearfix" *ngFor="let ngram of data[selectedKey]">
+      <p class="ngrams-info__name">{{ngram.text}}</p>
+      <p class="ngrams-info__score">{{ngram.score}}</p>
+      <div class="ngrams-info__sentences">
+        <div class="sentences">
+            <p class="sentences__toggler" (click)="ngram.show = !ngram.show">{{ngram.show ? 'Hide' : 'Show'}}</p>
+            <div class="sentences__list" *ngIf="ngram.show">
+              <p class="sentences__sentence" *ngFor="let sntc of ngram.sentences" [innerHTML]="sntc | highlight: ngram.text"></p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

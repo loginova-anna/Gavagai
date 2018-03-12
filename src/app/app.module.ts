@@ -7,6 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
 import { AnalyzeService } from './analyze.service';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { AnalyzeService } from './analyze.service';
     HttpModule,
     SharedModule
   ],
-  providers: [ApiService, AnalyzeService],
+  providers: [ApiService, AnalyzeService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

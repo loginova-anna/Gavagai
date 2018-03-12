@@ -13,12 +13,15 @@
 
 .text-detail__id {
     float: left;
-    width: 20px;
+    width: 30px;
 }
 
 .text-detail__text {
     float: left;
-    width: calc(60% - 20px)
+    width: calc(60% - 30px);
+    font-size: 14px;
+    color: $grey-800;
+    font-weight: 300;
 }
 
 .text-detail__tonalities {
@@ -28,13 +31,40 @@
 }
 
 .text-detail__tonality {
-    width: 20px;
-    margin-left: 2px;
-    padding: 5px;
-    background: $grey-500;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-left: 3px;
+    padding-top: 7px;
+    color: $grey-500;
+    background: $grey-100;
     display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.text-detail__tone-hint {
+    padding: 5px;
+    display: none;
+    position: absolute;
+    border: 1px solid $grey-100;
+    border-radius: 2px;
+    background: #fff;
+    font-size: 14px;
+    color: $grey-800;
+    top: 30px;
+    left: 0;
+    z-index: 10;
+}
+
+.text-detail__tonality:hover {
+    .text-detail__tone-hint{
+        display: block;
+    }
 }
 
 .text-detail__tonality_active {
-
+    background: #fff;
+    border: 1px solid $master-green;
 }

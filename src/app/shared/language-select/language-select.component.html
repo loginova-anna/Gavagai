@@ -1,8 +1,11 @@
 <div class="language-select">
-    <select class="language-select__control">
-
-          <option class="language-select__option" *ngFor="let lang of languages" [value]="lang.code">{{lang.name}}</option>
-
-      
-    </select>
+  <label class="language-select__label">Select language</label>
+  <select class="language-select__control">
+    <option
+      class="language-select__option"
+      *ngFor="let lang of languages"
+      [value]="lang.code"
+      [attr.selected]="lang.code === 'EN' ? true : null"
+    >{{lang.name}}</option>
+  </select>
 </div>
