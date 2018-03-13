@@ -23,7 +23,6 @@ export class DataService {
   }
 
   getCurrentFile():FullFileData {
-    console.log(this.currentFileId)
     if (this.currentFileId === -1) {return this.files[this.files.length]};
     
     return this.files.find(item => item.id === this.currentFileId);

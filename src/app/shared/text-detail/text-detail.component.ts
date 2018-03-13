@@ -13,7 +13,6 @@ export class TextDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.detail);
   }
 
   getRoundedScore(tone) {

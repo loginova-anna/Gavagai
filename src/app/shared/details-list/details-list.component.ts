@@ -13,7 +13,6 @@ export class DetailsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.list);
   }
 
 }

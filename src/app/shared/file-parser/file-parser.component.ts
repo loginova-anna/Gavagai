@@ -50,7 +50,6 @@ export class FileParserComponent implements OnInit {
   }
 
   prepareData(rawData: string | any[], type: string, breakByParagraph?: boolean) {
-    console.log(rawData, this.mainField, this.titleField);
     let texts = [];
     if (rawData instanceof Array) {
       rawData.forEach((item, index) => {
@@ -79,7 +78,6 @@ export class FileParserComponent implements OnInit {
         })
       }
     }
-    console.log(texts);
     return texts;
   }
 

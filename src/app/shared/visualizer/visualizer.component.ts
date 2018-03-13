@@ -16,38 +16,7 @@ export class VisualizerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.data);
-    // this.data = [
-    //   {
-    //     name: 'sdf',
-    //   series: [
-    //     {
-    //       "name": "France",
-    //       "value": 36745
-    //     },
-    //     {
-    //       "name": "United Kingdom",
-    //       "value": 36240
-    //     },
-    //     {
-    //       "name": "Italy",
-    //       "value": 35800
-    //     },
-    //     {
-    //       "name": "French Southern Territories",
-    //       "value": 50440
-    //     },
-    //     {
-    //       "name": "Switzerland",
-    //       "value": 38359
-    //     },
-    //     {
-    //       "name": "Montserrat",
-    //       "value": 49884
-    //     }
-    //   ]
-    // }];
-    // this.role = this.data.length < 2 ? 'single' : 'multi';
+  
   }
 
   onSelect(event) {
