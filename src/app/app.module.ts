@@ -5,9 +5,9 @@ import { HttpModule } from '@angular/http';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { ApiService } from './api.service';
-import { AnalyzeService } from './analyze.service';
-import { DataService } from './data.service';
+import { ApiService } from './services/api.service';
+import { AnalyzeService } from './services/analyze.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [

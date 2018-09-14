@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ApiService } from './api.service';
+import { ApiService } from './services/api.service';
 import { ResultItem } from './models/result-item';
 import { UploadText } from './models/upload-text';
 import { Tonality } from './models/tonality';
 import * as pdfjs from 'pdfjs-dist';
 import { UploadData } from './models/upload-data';
-import { AnalyzeService } from './analyze.service';
+import { AnalyzeService } from './services/analyze.service';
 import { GraphSingleSeries } from './models/graph-single-series';
-import { DataService } from './data.service';
+import { DataService } from './services/data.service';
 import { FullFileData } from './models/full-file-data';
 import { ResultData } from './models/result-data';
 @Component({
@@ -57,29 +57,25 @@ export class AppComponent implements OnInit {
 
   analyzeFile() {
     if (!this.fileData || !this.fileData.data || !this.fileData.data.length || !this.toneList.length || !this.apiKey) {
-      this.error = !this.fileData || !this.fileData.data || !this.fileData.data.length ? "No file was loaded" : 
-        !this.apiKey ? 'Please enter your ApiKey' : "";
+      this.error = !this.fileData || !this.fileData.data || !this.fileData.data.length ? 'No file was loaded' :
+        !this.apiKey ? 'Please enter your ApiKey' : '';
       return;
     }
     if (!this.fileData.data[0].body) {
-      this.error="Wrong data format (check presets for csv, xls)";
+      this.error = 'Wrong data format (check presets for csv, xls)';
       return;
     }
-    this.error = "";
-    let uploadData = new UploadData(
+    this.error = '';
+    const uploadData = new UploadData(
       this.fileData.data,
       this.languageCode,
       this.toneList,
       true
-    )
-    // this.currentFile = this.dataService.getCurrentFile();
-    this.apiService.getFileAnalysis(uploadData, this.apiKey).subscribe(data =>
-      // localStorage.setItem('testfile', JSON.stringify(data))
-      {
-        // this.result = data.texts.map(item => new ResultItem(this.fileData.data[+item['id']], item.tonality));
-        let scoreData = this.analyser.getOverallTonalityScore(data);
-        let graphData = this.analyser.getSingleGraphSeries(scoreData, this.fileData.name);
-        let ngramsData = this.analyser.getNgramsByTones(data)
+    );
+    this.apiService.getFileAnalysis(uploadData, this.apiKey).subscribe(data => {
+        const scoreData = this.analyser.getOverallTonalityScore(data);
+        const graphData = this.analyser.getSingleGraphSeries(scoreData, this.fileData.name);
+        const ngramsData = this.analyser.getNgramsByTones(data);
         this.dataService.addFileData(this.fileData.name, uploadData, data, graphData, ngramsData);
         this.currentFile = this.dataService.getCurrentFile();
         this.detailsData = this.getDetails();
@@ -89,21 +85,21 @@ export class AppComponent implements OnInit {
   }
 
   getDetails() {
-    let data = this.currentFile.analysisData;
+    const data = this.currentFile.analysisData;
     return data.texts.map(item => new ResultItem(this.currentFile.fileData.texts[+item['id']], item.tonality));
   }
 
   buildCompareData() {
     if (!(this.dataService.files && this.dataService.files.length)) { return; }
-    let dataArr = this.dataService.files.map(item => item.graphData);
-    let result = [];
+    const dataArr = this.dataService.files.map(item => item.graphData);
+    const result = [];
     dataArr[0].series.forEach(tonality => {
-      let item = {name: tonality.name, series:[]}
+      const item = {name: tonality.name, series: []};
       dataArr.forEach(file => {
         item.series.push({name: file.name, value: file.series.find(s => s.name === tonality.name).value})
-      })
+      });
       result.push(item);
-    })
+    });
     this.compareGraphData = result;
   }
 

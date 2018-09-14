@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ResultData } from './models/result-data';
-import { OverallScore } from './models/overall-score';
-import { GraphSingleSeries } from './models/graph-single-series';
-import { NgramsInfo } from './models/ngrams-info';
+import { ResultData } from '../models/result-data';
+import { OverallScore } from '../models/overall-score';
+import { GraphSingleSeries } from '../models/graph-single-series';
+import { NgramsInfo } from '../models/ngrams-info';
 
 @Injectable()
 export class AnalyzeService {
@@ -10,7 +10,7 @@ export class AnalyzeService {
   constructor() { }
 
   getOverallTonalityScore(data: ResultData): OverallScore {
-    const overall = new OverallScore({love: 0, hate: 0, fear: 0, positivity: 0, negativity:0, violence: 0, desire: 0, skepticism: 0});
+    const overall = new OverallScore({love: 0, hate: 0, fear: 0, positivity: 0, negativity: 0, violence: 0, desire: 0, skepticism: 0});
     data.texts.forEach(item => {
       item.tonality.forEach(tonality => {
         overall[tonality.tone] += tonality.score;

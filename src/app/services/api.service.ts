@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { UploadData } from './models/upload-data';
+import { UploadData } from '../models/upload-data';
 import { Observable } from 'rxjs/Rx';
-import { ResultData } from './models/result-data';
+import { ResultData } from '../models/result-data';
 
 @Injectable()
 export class ApiService {
