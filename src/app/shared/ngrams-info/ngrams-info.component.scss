@@ -4,99 +4,99 @@
 }
 
 .ngrams-info__tonality-chooser {
-    padding: 5px;
-    border: 1px solid $grey-100;
+  padding: 5px;
+  border: 1px solid $grey-100;
 }
 
 .ngrams-info__tonality {
-    float: left;
-    padding-left: 3px;
-    padding-right: 3px;
-    border-radius: 2px;
-    cursor: pointer;
-    margin-right: 10px;
-    text-transform: capitalize;
-    color: $grey-500;
-    &:hover {
-        color: $grey-800;
-    }
-    &_active {
-        color: $grey-800;
-        background: $grey-100;
-    }
+  float: left;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-right: 10px;
+  text-transform: capitalize;
+  color: $grey-500;
+  &:hover {
+    color: $grey-800;
+  }
+  &_active {
+    color: $grey-800;
+    background: $grey-100;
+  }
 }
 
 .ngrams-info__toggler {
-    float: right;
+  float: right;
 }
 
 .ngrams-info__switch {
-    cursor: pointer;
-    float: right;
-    margin-left: 10px;
-    width: 15px;
-    height: 15px;
-    background-size: cover;
-    opacity: .6;
-    transition: opacity .3s;
-    &:hover {
-        opacity: 1;
-    }
-    &_active {
-        opacity: 1;
-    }
+  cursor: pointer;
+  float: right;
+  margin-left: 10px;
+  width: 15px;
+  height: 15px;
+  background-size: cover;
+  opacity: .6;
+  transition: opacity .3s;
+  &:hover {
+    opacity: 1;
+  }
+  &_active {
+    opacity: 1;
+  }
 }
 
 .ngrams-info__switch_cloud {
-    background-image: url('/assets/icons/cloud.svg');
+  background-image: url('/assets/icons/cloud.svg');
 }
 
 .ngrams-info__switch_details {
-    background-image: url('/assets/icons/listing-option.svg');
+  background-image: url('/assets/icons/listing-option.svg');
 }
 
 .ngrams-info__list {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .ngrams-info__headers {
-    color: $grey-800;
-    font-size: 13px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid $grey-100;
+  color: $grey-800;
+  font-size: 13px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $grey-100;
 }
 
 .ngrams-info__row {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border-bottom: 1px dashed $grey-100;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-bottom: 1px dashed $grey-100;
 }
 
 .ngrams-info__name {
-    float: left;
-    width: 200px;
+  float: left;
+  width: 200px;
 }
 
 .ngrams-info__cloud {
-    margin: 0 auto;
-    text-align: center;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .ngrams-info__no-data {
-    color: $grey-500;
-    padding-top: 20px;
-    font-size: 14px;
+  color: $grey-500;
+  padding-top: 20px;
+  font-size: 14px;
 }
 
 .ngrams-info__score {
-    float: left;
-    width: 100px;
-    overflow: hidden;
+  float: left;
+  width: 100px;
+  overflow: hidden;
 }
 
 .ngrams-info__sentences {
-    float: left;
-    width: calc(100% - 300px);
+  float: left;
+  width: calc(100% - 300px);
 }
 
 .sentences {
@@ -104,27 +104,27 @@
 }
 
 .sentences__toggler {
-    cursor: pointer;
-    color: $grey-500;
-    transition: color .3s;
-    &:hover {
-        color: $grey-800;
-    }
+  cursor: pointer;
+  color: $grey-500;
+  transition: color .3s;
+  &:hover {
+    color: $grey-800;
+  }
 }
 
 .sentences__list {
-    border-left: 2px solid $grey-500;
-    padding-left: 10px;
-    margin-top: 10px;
-    max-height: 300px;
-    overflow: scroll;
-    padding-top: 10px;
-    padding-bottom: 5px;
+  border-left: 2px solid $grey-500;
+  padding-left: 10px;
+  margin-top: 10px;
+  max-height: 300px;
+  overflow: scroll;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 .sentences__sentence {
-    color: $grey-500;
-    font-size: 12px;
-    padding-bottom: 5px;
+  color: $grey-500;
+  font-size: 12px;
+  padding-bottom: 5px;
 }
 

@@ -4,34 +4,34 @@
 }
 
 .tone-chooser__control {
-    margin-bottom: 2px;
-    margin-right: 2px;
-    display: inline-block;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  display: inline-block;
 }
 
 .tone-chooser__input {
-    display: none;
+  display: none;
 }
 
 .tone-chooser__label {
-    display: block;
-    border-radius: 2px;
-    text-align: center;
-    padding: 2px 5px;
-    background: $grey-200;
-    cursor: pointer;
-    transition: .3s ease;
-    color: $grey-800;
-    font-size: 12px;
-    &:hover {
-        background: $grey-300;
-    }
+  display: block;
+  border-radius: 2px;
+  text-align: center;
+  padding: 2px 5px;
+  background: $grey-200;
+  cursor: pointer;
+  transition: .3s ease;
+  color: $grey-800;
+  font-size: 12px;
+  &:hover {
+    background: $grey-300;
+  }
 }
 
 .tone-chooser__input:checked + .tone-chooser__label {
-    background: $master-green;
-    color: #fff;
-    &:hover {
-        background: $hover-green;
-    }
+  background: $master-green;
+  color: #fff;
+  &:hover {
+    background: $hover-green;
+  }
 }

@@ -10,17 +10,17 @@ export class AnalyzeService {
   constructor() { }
 
   getOverallTonalityScore(data: ResultData): OverallScore {
-    let overall = new OverallScore({love: 0, hate: 0, fear: 0, positivity: 0, negativity:0, violence: 0, desire: 0, skepticism: 0});
+    const overall = new OverallScore({love: 0, hate: 0, fear: 0, positivity: 0, negativity:0, violence: 0, desire: 0, skepticism: 0});
     data.texts.forEach(item => {
       item.tonality.forEach(tonality => {
         overall[tonality.tone] += tonality.score;
-      })
-    })
+      });
+    });
     return overall;
   }
 
   getNgramsByTones(data: ResultData): {[key: string]: NgramsInfo[]} {
-    let ngrams = {};
+    const ngrams = {};
     data.texts.forEach(item => {
       item.tonality.filter(tnl => tnl.score).forEach(tonality => {
         ngrams[tonality.tone] = ngrams[tonality.tone] || {};
@@ -32,11 +32,11 @@ export class AnalyzeService {
               ngrams[tonality.tone][ngram.ngram].score += ngram.score;
               ngrams[tonality.tone][ngram.ngram].sentences.push(sentence.text);
             }
-          })
-        })
-      })
+          });
+        });
+      });
     });
-    let preparedData = {};
+    const preparedData = {};
     for (let tone in ngrams) {
       preparedData[tone] = [];
       for(let word in ngrams[tone]) {
@@ -48,7 +48,7 @@ export class AnalyzeService {
   }
 
   getSingleGraphSeries(data: OverallScore, fileName: string): GraphSingleSeries {
-    let result = {name: fileName, series: []};
+    const result = {name: fileName, series: []};
     for (let tonality in data) {
       result.series.push({name: tonality, value: data[tonality]});
     }

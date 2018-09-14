@@ -1,23 +1,22 @@
 <div class="file-parser">
-    <div class="file-parser__loader" [ngClass]="{'file-parser__loader_loading': loading}"></div>
-    <button class="file-parser__button button"  (click)="clickFileInput()">Load file</button>
-    <div class="file-parser__presets presets">
-        <p class="presets__title" (click)="txtPresetsShow = !txtPresetsShow">Presets for pdf</p>
-        <div class="presets__preset" *ngIf="txtPresetsShow">
-            <label class="presets__label" for="break">Break text by paragraphs</label>
-            <input id="break" type="checkbox" class="file-parser__break-check" [(ngModel)]="breakByLine" checked><br>
-        </div>
+  <div class="file-parser__loader" [ngClass]="{'file-parser__loader_loading': loading}"></div>
+  <button class="file-parser__button button"  (click)="clickFileInput()">Load file</button>
+  <div class="file-parser__presets presets">
+    <p class="presets__title" (click)="txtPresetsShow = !txtPresetsShow">Presets for pdf</p>
+    <div class="presets__preset" *ngIf="txtPresetsShow">
+      <label class="presets__label" for="break">Break text by paragraphs</label>
+      <input id="break" type="checkbox" class="file-parser__break-check" [(ngModel)]="breakByLine" checked><br>
     </div>
-    <div class="file-parser__presets presets">
-        <p class="presets__title" (click)="tablePresetsShow = !tablePresetsShow">Presets for csv, xls</p>
-        <div class="presets__preset" *ngIf="tablePresetsShow">
-            <label class="presets__label">Content field name</label>
-            <input type="text" class="presets__input" [(ngModel)]="mainField"><br>
-            <label class="presets__label">Title field name</label>
-            <input type="text" class="presets__input" [(ngModel)]="titleField"><br>
-        </div>
+  </div>
+  <div class="file-parser__presets presets">
+    <p class="presets__title" (click)="tablePresetsShow = !tablePresetsShow">Presets for csv, xls</p>
+    <div class="presets__preset" *ngIf="tablePresetsShow">
+      <label class="presets__label">Content field name</label>
+      <input type="text" class="presets__input" [(ngModel)]="mainField"><br>
+      <label class="presets__label">Title field name</label>
+      <input type="text" class="presets__input" [(ngModel)]="titleField"><br>
     </div>
-    <input #fileloader type="file" (change)="loadFile($event)" class="file-parser__input" accept=".xls,.xlsx,.pdf,.csv">
-    <!-- <p class="file-parser__filename">{{file&&file.name || 'no file loaded'}}</p> -->
+  </div>
+  <input #fileloader type="file" (change)="loadFile($event)" class="file-parser__input" accept=".xls,.xlsx,.pdf,.csv">
 </div>
-  
+

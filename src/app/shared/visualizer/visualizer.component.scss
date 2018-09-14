@@ -2,42 +2,41 @@
 
 
 .visualizer {
-    color: $grey-200;
+  color: $grey-200;
 }
 
 .visualizer__type-chooser {
-
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .visualizer__type {
-    float: right;
-    margin-left: 10px;
-    width: 16px;
-    height: 16px;
-    opacity: .6;
-    transition: opacity .3s;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    background-size: cover;
-    &:hover {
-        opacity: 1;
-    }
-    &_active {
-        opacity: 1;
-    }
+  float: right;
+  margin-left: 10px;
+  width: 16px;
+  height: 16px;
+  opacity: .6;
+  transition: opacity .3s;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &:hover {
+    opacity: 1;
+  }
+  &_active {
+    opacity: 1;
+  }
 }
 
 .visualizer__type_vchart {
-    background-image: url('/assets/icons/bar-chart.svg');
+  background-image: url('/assets/icons/bar-chart.svg');
 }
 
 .visualizer__type_hchart {
-    background-image: url('/assets/icons/bar-chart.svg');
-    transform: rotate(90deg);
+  background-image: url('/assets/icons/bar-chart.svg');
+  transform: rotate(90deg);
 }
 
 .visualizer__type_blocks {
-    background-image: url('/assets/icons/statistics.svg');
-    transform: rotate(90deg);
+  background-image: url('/assets/icons/statistics.svg');
+  transform: rotate(90deg);
 }

@@ -35,7 +35,7 @@ export class FileParserComponent implements OnInit {
     }
     this.loading = true;
     this.parser.loadFile(this.file).subscribe(res => {
-      let preparedData = this.prepareData(res, this.file.type);
+      const preparedData = this.prepareData(res, this.file.type);
       this.loading = false;
       this.fileData.emit({name: this.file.name, data: preparedData});
     });
@@ -44,38 +44,38 @@ export class FileParserComponent implements OnInit {
   reloadFile() {
     if (this.loading) { return; }
     this.parser.loadFile(this.file).subscribe(res => {
-      let preparedData = this.prepareData(res, this.file.type);
+      const preparedData = this.prepareData(res, this.file.type);
       this.fileData.emit({name: this.file.name, data: preparedData});
     });
   }
 
   prepareData(rawData: string | any[], type: string, breakByParagraph?: boolean) {
-    let texts = [];
+    const texts = [];
     if (rawData instanceof Array) {
       rawData.forEach((item, index) => {
-        if (!item[this.mainField]) {return}
+        if (!item[this.mainField]) { return; }
         texts.push ({
           body: item[this.mainField],
           title: item[this.titleField] || 'string ' + index,
           id: index
-        })
-      })
+        });
+      });
     } else {
       if (this.breakByLine) {
-        let txtArray = rawData.split(/\n/);
+        const txtArray = rawData.split(/\n/);
         txtArray.forEach((item, index) => {
           texts.push({
           body: item.replace(/\s+/g, ' ').trim(),
             title: 'paragraph ' + index,
             id: index
-          })
-        })
+          });
+        });
       } else {
         texts.push({
           body: rawData.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim(),
           title: 'title',
           id: 0
-        })
+        });
       }
     }
     return texts;

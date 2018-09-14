@@ -11,7 +11,6 @@ export class NgramsInfoComponent implements OnInit {
 
   @Input() data: {[key: string]: NgramsInfo[]};
   cloudView = false;
-  // showData: NgramsInfo[];
   cloudData: AgWordCloudData[];
   selectedKey: string;
 
@@ -19,17 +18,15 @@ export class NgramsInfoComponent implements OnInit {
 
   ngOnInit() {
     this.selectedKey = Object.keys(this.data)[0];
-    // this.showData = this.data[this.keys[0]];
     this.cloudData = this.getCloudData();
   }
 
   getKeys(): string[] {
-    return Object.keys(this.data)
+    return Object.keys(this.data);
   }
 
   chooseTonality(key) {
     this.cloudView = false;
-    // this.showData = this.data[key];
     this.selectedKey = key;
     this.cloudData = this.getCloudData();
     this.ref.detectChanges();

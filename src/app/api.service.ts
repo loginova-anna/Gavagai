@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../environments/environment';
 import { RequestOptions, Headers } from '@angular/http';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 import { UploadData } from './models/upload-data';
 import { Observable } from 'rxjs/Rx';
 import { ResultData } from './models/result-data';
@@ -13,26 +13,25 @@ export class ApiService {
   constructor(private http: Http) { }
 
   getLanguages() {
-    let isoLang = this.getIsoLangs();
+    // let isoLang = this.getIsoLangs();
     return  (["AR", "AZ", "BG", "BN", "CA", "CS", "DA", "DE", "EL", "EN", "ES", "ET", "FA", "FI", "FR", "HE", "HI", "HR", "HU", "ID", "IS", "IT", "JA", "JV", "KO", "LT", "LV", "MS", "NL", "NO", "PL", "PT", "RO", "RU", "SK", "SL", "SQ", "SV", "SW", "TH", "TL", "TR", "UK", "UR", "VI", "ZH"]);
-    // return this.http.get(this.getUrl('/languages')).subscribe(res => console.log(res.json()));
+    // return this.http.get(this.getUrl('/languages', apiKey)).subscribe(res => {console.log(res.json()); return res.json(); });
   }
 
   getFileAnalysis(data: UploadData, apiKey: string): Observable<ResultData> {
-    let header = new Headers({
+    const header = new Headers({
       'Content-Type': 'application/json'
     });
-    let options = new RequestOptions({
+    const options = new RequestOptions({
       headers: header
    });
-  //  return Observable.of(JSON.parse(JSON.parse(localStorage.getItem('testfile'))._body));
     return this.http.post(this.getUrl('/tonality', apiKey), JSON.stringify(data), options).map(res => res.json());
   }
 
   getIsoLangs() {
     return this.http.get('../assets/json/iso-639-1.json')
     .map(res => {
-      let isoLangs = JSON.parse(res.text());
+      const isoLangs = JSON.parse(res.text());
 
       return this.getLanguages().map(item => (
         {
@@ -40,7 +39,7 @@ export class ApiService {
           name: isoLangs[item.toLowerCase()].name
         }
       ));
-    })
+    });
   }
 
   getTones() {

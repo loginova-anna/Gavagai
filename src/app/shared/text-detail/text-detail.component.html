@@ -1,10 +1,10 @@
 <div class="text-detail">
-    <p class="text-detail__id">{{detail.item.id}}</p>
-    <p class="text-detail__text">{{detail.item.body.substring(0,200) + (detail.item.body.length>200 && '...' || '')}}</p>
-    <div class="text-detail__tonalities">
-      <div *ngFor="let tone of detail.tonality"
-        class="text-detail__tonality"
-        [ngClass]="{'text-detail__tonality_active': tone.score > 0}"
-      >{{tone.score}} <span class="text-detail__tone-hint">{{tone.tone}}</span></div>
-    </div>
+  <p class="text-detail__id">{{detail.item.id}}</p>
+  <p class="text-detail__text">{{detail.item.body.substring(0,200) + (detail.item.body.length>200 && '...' || '')}}</p>
+  <div class="text-detail__tonalities">
+    <div *ngFor="let tone of detail.tonality"
+      class="text-detail__tonality"
+      [ngClass]="{'text-detail__tonality_active': tone.score > 0}"
+    >{{tone.score}} <span class="text-detail__tone-hint">{{tone.tone}}</span></div>
+  </div>
 </div>
